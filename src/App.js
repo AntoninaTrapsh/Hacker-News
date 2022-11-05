@@ -1,10 +1,10 @@
-import './App.css';
+import React from "react";
+import NewsPage from "./components/pages/news-page";
+import {Provider} from "react-redux";
+import {store} from "./store/store";
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+const App = () => {
+  return (<Provider store={store}><NewsPage/></Provider>)
 }
 
 export default App;
