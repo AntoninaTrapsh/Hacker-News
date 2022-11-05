@@ -1,25 +1,25 @@
 import React, {useEffect, useState} from "react";
 import NewsClient from "../services/news-client";
 import NewsCard from "../components/news-card/news-card";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {fetchNewsIds} from "../../store/actionsCreators";
+import {selectNews} from "../../store/selectors";
 
 const NewsPage = () => {
-    const [news, setNews] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchNewsIds())
-
+        dispatch(fetchNewsIds());
     }, [])
 
-    console.log(news);
+    const news = useSelector(selectNews);
 
     return (
         <>
             {
-                news.map((id) => {
-                    return <NewsCard/>
+                news.map((item) => {
+                    console.log(item);
+                    return <NewsCard key={item.id} info={item}/>
                 })
             }
         </>
