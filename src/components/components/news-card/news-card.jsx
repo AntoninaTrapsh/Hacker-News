@@ -1,4 +1,4 @@
-import {Card, Tag} from "antd";
+import {Card, Col, Tag} from "antd";
 import React from "react";
 import styles from "./news-card.module.css"
 import {LikeOutlined, UserOutlined} from '@ant-design/icons';
@@ -16,12 +16,12 @@ const NewsCard = (props) => {
         return date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
     }
     return (
+        <Col span={8}>
         <Card
             title={props.info.title}
             extra={<Tag style={{display: 'flex', alignItems: 'center', marginLeft: 10}} color="#f50">{props.info.score}<LikeOutlined /></Tag>}
             style={{
-                width: 500,
-                height: 120,
+                marginTop: 10,
             }}
         >
             <div className={styles['news-card__additional-info']}>
@@ -32,6 +32,7 @@ const NewsCard = (props) => {
                 <p>{timeConverter(props.info.time)}</p>
             </div>
         </Card>
+        </Col>
     )
 }
 

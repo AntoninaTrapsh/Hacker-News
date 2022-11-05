@@ -4,7 +4,7 @@ const initialState = {
     newsId: [],
     news: [],
     pagination: 1,
-    count: 10,
+    count: 15,
 }
 
 
