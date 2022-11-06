@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from "react";
 import NewsCard from "../components/news-card/news-card";
 import {useDispatch, useSelector} from "react-redux";
-import {createIncreasePagination, fetchNewsByIds, fetchNewsIds} from "../../store/actionsCreators";
+import {createIncreasePagination, fetchMoreNewsByIds, fetchNewsIds} from "../../store/actionsCreators";
 import {selectNews, selectCurrentNumberOfNews, selectNewsIds, selectLoadingMoreState} from "../../store/selectors";
 import styles from "./news-pages.module.css"
 import {Button, Row} from "antd";
@@ -24,7 +24,7 @@ const NewsPage = () => {
 
    const handleShowMoreClick = useCallback(() => {
        dispatch(createIncreasePagination())
-       dispatch(fetchNewsByIds());
+       dispatch(fetchMoreNewsByIds());
    }, [dispatch])
 
     const news = useSelector(selectNews);
