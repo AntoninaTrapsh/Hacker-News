@@ -1,6 +1,6 @@
 import {
     CHANGE_LOADING_STATE,
-    INCREASE_PAGINATION, LOAD_ACTIVE_NEWS_COMMENTS, LOAD_ACTIVE_NEWS_ITEM,
+    INCREASE_PAGINATION, LOAD_ACTIVE_NEWS_COMMENTS, LOAD_ACTIVE_NEWS_ITEM, LOAD_CHILDREN_COMMENTS,
     LOAD_MORE_NEWS_BY_ID,
     LOAD_NEWS_BY_ID,
     LOAD_NEWS_ID
@@ -96,6 +96,25 @@ export function fetchActiveNewsComments() {
                 dispatch({
                     type: LOAD_ACTIVE_NEWS_COMMENTS,
                     payload: res,
+                })
+            })
+    }
+}
+
+export function fetchChildrenComments(id) {
+    return async (dispatch, getState) => {
+        const responseComment = await NewsClient.getStoryItem(id)
+
+        const requests = responseComment.kids.map((id) => NewsClient.getStoryItem(id))
+
+        Promise.all(requests)
+            .then((res) => {
+                dispatch({
+                    type: LOAD_CHILDREN_COMMENTS,
+                    payload: {
+                        parent: id,
+                        children: res
+                    },
                 })
             })
     }

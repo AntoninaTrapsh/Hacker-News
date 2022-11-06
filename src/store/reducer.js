@@ -1,9 +1,12 @@
 import {
     CHANGE_LOADING_STATE,
     INCREASE_PAGINATION,
+    LOAD_ACTIVE_NEWS_COMMENTS,
+    LOAD_ACTIVE_NEWS_ITEM,
+    LOAD_CHILDREN_COMMENTS,
     LOAD_MORE_NEWS_BY_ID,
     LOAD_NEWS_BY_ID,
-    LOAD_NEWS_ID, LOAD_ACTIVE_NEWS_ITEM, LOAD_ACTIVE_NEWS_COMMENTS
+    LOAD_NEWS_ID
 } from "./actions";
 
 const initialState = {
@@ -17,6 +20,33 @@ const initialState = {
         info: {},
         comments: []
     },
+}
+
+const findCommentById = (comments, id) => {
+    const stack = [...comments]
+
+    while (stack.length) {
+        const comment = stack.pop()
+
+        if (comment.id === id) {
+            return {
+                el: comment
+            }
+        }
+
+        if (comment.childComments) {
+            const elIndex = comment.childComments.findIndex(child => child.id === id)
+
+            if (elIndex !== -1) {
+                return {
+                    el: comment.childComments[elIndex],
+                    elIndex
+                }
+            }
+
+            stack.push(...comment.childComments)
+        }
+    }
 }
 
 
@@ -65,6 +95,29 @@ export const reducer = (state = initialState, {type, payload}) => {
                 activeNewsItem: {
                     ...state.activeNewsItem,
                     comments: [...state.activeNewsItem.comments, ...payload]
+                }
+            }
+        case LOAD_CHILDREN_COMMENTS:
+
+            const {el, elIndex} = findCommentById(state.activeNewsItem.comments, payload.parent)
+
+            if (!el.childComments) {
+                el.childComments = [...payload.children]
+            } else {
+
+                const comment = el.childComments[elIndex]
+
+                el.childComments[elIndex] = {
+                    ...comment,
+                    childComments: payload.children
+                }
+
+            }
+            return {
+                ...state,
+                activeNewsItem: {
+                    ...state.activeNewsItem,
+                    comments: [...state.activeNewsItem.comments]
                 }
             }
         default:
