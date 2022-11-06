@@ -5,6 +5,7 @@ const initialState = {
     news: [],
     pagination: 0,
     count: 15,
+    isLoadingMore: false,
 }
 
 
@@ -19,12 +20,14 @@ export const reducer = (state = initialState, {type, payload}) => {
         case LOAD_NEWS_BY_ID:
             return {
                 ...state,
-                news: [...state.news, ...payload]
+                news: [...state.news, ...payload],
+                isLoadingMore: false,
             }
         case INCREASE_PAGINATION:
             return {
                 ...state,
                 pagination: state.pagination + 1,
+                isLoadingMore: true,
             }
         default:
             return state;

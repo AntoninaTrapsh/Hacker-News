@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from "react";
 import NewsCard from "../components/news-card/news-card";
 import {useDispatch, useSelector} from "react-redux";
 import {createIncreasePagination, fetchNewsByIds, fetchNewsIds} from "../../store/actionsCreators";
-import {selectNews, selectCurrentNumberOfNews, selectNewsIds} from "../../store/selectors";
+import {selectNews, selectCurrentNumberOfNews, selectNewsIds, selectLoadingMoreState} from "../../store/selectors";
 import styles from "./news-pages.module.css"
 import {Button, Row} from "antd";
 
@@ -13,6 +13,15 @@ const NewsPage = () => {
         dispatch(fetchNewsIds());
     }, [dispatch])
 
+    useEffect(() => {
+        let timer = setInterval(function() {
+            dispatch(fetchNewsIds());
+        },60000);
+        return (() => {
+            clearInterval(timer);
+        })
+    }, [dispatch])
+
    const handleShowMoreClick = useCallback(() => {
        dispatch(createIncreasePagination())
        dispatch(fetchNewsByIds());
@@ -21,8 +30,8 @@ const NewsPage = () => {
     const news = useSelector(selectNews);
     const currentNumberOfNews = useSelector(selectCurrentNumberOfNews);
     const totalNews = useSelector(selectNewsIds).length;
-    let isLastNewsAtList = currentNumberOfNews >= totalNews;
-    console.log(totalNews);
+    const isLastNewsAtList = currentNumberOfNews >= totalNews;
+    const isLoadingMore = useSelector(selectLoadingMoreState);
 
     return (
         <>
@@ -31,7 +40,6 @@ const NewsPage = () => {
                 <Row gutter={16}>
                     {
                         news.map((item) => {
-                            // console.log(item);
                             return <NewsCard key={item.id} info={item}/>
                         })
                     }
@@ -39,7 +47,7 @@ const NewsPage = () => {
             </div>
             {
                 !isLastNewsAtList &&
-                <Button type="default" style={{marginLeft: "auto", marginRight: "auto"}} onClick={() => {handleShowMoreClick()}}>More</Button>
+                <Button type="default" loading={isLoadingMore} style={{marginLeft: "auto", marginRight: "auto"}} onClick={() => {handleShowMoreClick()}}>More</Button>
             }
         </>
     );
