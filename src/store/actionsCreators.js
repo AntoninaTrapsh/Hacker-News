@@ -1,4 +1,10 @@
-import {INCREASE_PAGINATION, LOAD_MORE_NEWS_BY_ID, LOAD_NEWS_BY_ID, LOAD_NEWS_ID} from "./actions";
+import {
+    CHANGE_LOADING_STATE,
+    INCREASE_PAGINATION,
+    LOAD_MORE_NEWS_BY_ID,
+    LOAD_NEWS_BY_ID,
+    LOAD_NEWS_ID
+} from "./actions";
 import NewsClient from "../components/services/news-client";
 
 export function createIncreasePagination() {
@@ -7,8 +13,19 @@ export function createIncreasePagination() {
     }
 }
 
+export function changeLoadingState(flag) {
+    return async (dispatch, getState) => {
+        dispatch({
+            type: CHANGE_LOADING_STATE,
+            payload: flag
+        })
+    }
+}
+
 export function fetchNewsIds() {
     return async (dispatch) => {
+        dispatch(changeLoadingState(true))
+
         const data = await NewsClient.getNews("newstories")
         dispatch({
             type: LOAD_NEWS_ID,
@@ -52,5 +69,6 @@ export function fetchNewsByIds() {
                     payload: res,
                 })
             })
+            .then(dispatch(changeLoadingState(false)))
     }
 }

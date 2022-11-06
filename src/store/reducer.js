@@ -1,4 +1,10 @@
-import {INCREASE_PAGINATION, LOAD_MORE_NEWS_BY_ID, LOAD_NEWS_BY_ID, LOAD_NEWS_ID} from "./actions";
+import {
+    CHANGE_LOADING_STATE,
+    INCREASE_PAGINATION,
+    LOAD_MORE_NEWS_BY_ID,
+    LOAD_NEWS_BY_ID,
+    LOAD_NEWS_ID
+} from "./actions";
 
 const initialState = {
     newsId: [],
@@ -27,13 +33,18 @@ export const reducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 news: [...state.news, ...payload],
-                isLoadingMore: false,
+                isLoadingMore: false
             }
         case INCREASE_PAGINATION:
             return {
                 ...state,
                 pagination: state.pagination + 1,
-                isLoadingMore: true,
+                isLoadingMore: true
+            }
+        case CHANGE_LOADING_STATE:
+            return {
+                ...state,
+                isLoadingNews: payload
             }
         default:
             return state;
