@@ -1,6 +1,6 @@
 import {
     CHANGE_LOADING_STATE,
-    INCREASE_PAGINATION,
+    INCREASE_PAGINATION, LOAD_ACTIVE_NEWS_ITEM,
     LOAD_MORE_NEWS_BY_ID,
     LOAD_NEWS_BY_ID,
     LOAD_NEWS_ID
@@ -69,5 +69,16 @@ export function fetchNewsByIds() {
                     payload: res,
                 })
             })
+    }
+}
+
+export function fetchActiveNewsItemById(id) {
+    return async (dispatch, getState) => {
+        NewsClient.getStoryItem(id).then((data) => {
+            dispatch({
+                type: LOAD_ACTIVE_NEWS_ITEM,
+                payload: data,
+            })
+        })
     }
 }

@@ -3,7 +3,7 @@ import {
     INCREASE_PAGINATION,
     LOAD_MORE_NEWS_BY_ID,
     LOAD_NEWS_BY_ID,
-    LOAD_NEWS_ID
+    LOAD_NEWS_ID, LOAD_ACTIVE_NEWS_ITEM
 } from "./actions";
 
 const initialState = {
@@ -13,6 +13,10 @@ const initialState = {
     count: 15,
     isLoadingMore: false,
     isLoadingNews: false,
+    activeNewsItem: {
+        info: {},
+        comments: []
+    },
 }
 
 
@@ -46,6 +50,14 @@ export const reducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 isLoadingNews: payload
+            }
+        case LOAD_ACTIVE_NEWS_ITEM:
+            return {
+                ...state,
+                activeNewsItem: {
+                    ...state.activeNewsItem,
+                    info: payload
+                },
             }
         default:
             return state;
