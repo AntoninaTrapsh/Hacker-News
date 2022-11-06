@@ -1,6 +1,6 @@
 import {
     CHANGE_LOADING_STATE,
-    INCREASE_PAGINATION, LOAD_ACTIVE_NEWS_ITEM,
+    INCREASE_PAGINATION, LOAD_ACTIVE_NEWS_COMMENTS, LOAD_ACTIVE_NEWS_ITEM,
     LOAD_MORE_NEWS_BY_ID,
     LOAD_NEWS_BY_ID,
     LOAD_NEWS_ID
@@ -80,5 +80,23 @@ export function fetchActiveNewsItemById(id) {
                 payload: data,
             })
         })
+            .then(() => dispatch(fetchActiveNewsComments()))
+    }
+}
+
+export function fetchActiveNewsComments() {
+    return async (dispatch, getState) => {
+        const state = getState()
+        const ids = state.activeNewsItem.info.kids ? state.activeNewsItem.info.kids : []
+
+        const requests = ids.map((id) => NewsClient.getStoryItem(id))
+
+        Promise.all(requests)
+            .then((res) => {
+                dispatch({
+                    type: LOAD_ACTIVE_NEWS_COMMENTS,
+                    payload: res,
+                })
+            })
     }
 }
