@@ -27,7 +27,8 @@ export const reducer = (state = initialState, {type, payload}) => {
         case LOAD_NEWS_BY_ID:
             return {
                 ...state,
-                news: payload
+                news: payload,
+                isLoadingNews: false
             }
         case LOAD_MORE_NEWS_BY_ID:
             return {

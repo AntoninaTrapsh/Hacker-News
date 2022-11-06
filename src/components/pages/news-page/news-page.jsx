@@ -23,18 +23,18 @@ const NewsPage = () => {
     }, [dispatch])
 
     useEffect(() => {
-        let timer = setInterval(function() {
+        let timer = setInterval(function () {
             dispatch(fetchNewsIds());
-        },60000);
+        }, 60000);
         return (() => {
             clearInterval(timer);
         })
     }, [dispatch, reloadInterval])
 
-   const handleShowMoreClick = useCallback(() => {
-       dispatch(createIncreasePagination())
-       dispatch(fetchMoreNewsByIds());
-   }, [dispatch])
+    const handleShowMoreClick = useCallback(() => {
+        dispatch(createIncreasePagination())
+        dispatch(fetchMoreNewsByIds());
+    }, [dispatch])
 
     const handleReloadClick = useCallback(() => {
         dispatch(fetchNewsIds());
@@ -65,12 +65,15 @@ const NewsPage = () => {
                 </Row>
             </div>
             {
-                !isLastNewsAtList &&
-                <Button type="default" loading={isLoadingMore} style={{marginLeft: "auto", marginRight: "auto"}} disabled={isLoadingMore && isLoading} onClick={() => {handleShowMoreClick()}}>More</Button>
+                !isLastNewsAtList && !isLoading ?
+                    <Button type="default" loading={isLoadingMore} style={{marginLeft: "auto", marginRight: "auto"}}
+                            disabled={isLoadingMore && isLoading} onClick={() => {
+                        handleShowMoreClick()
+                    }}>More</Button> : null
             }
             <button className={styles['news-page__reload-button']} disabled={isLoading} onClick={handleReloadClick}>
                 {
-                    isLoading ? <LoadingOutlined /> : <ReloadOutlined />
+                    isLoading ? <LoadingOutlined/> : <ReloadOutlined/>
                 }
             </button>
         </>

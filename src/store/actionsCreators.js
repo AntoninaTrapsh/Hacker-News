@@ -69,6 +69,5 @@ export function fetchNewsByIds() {
                     payload: res,
                 })
             })
-            .then(dispatch(changeLoadingState(false)))
     }
 }
