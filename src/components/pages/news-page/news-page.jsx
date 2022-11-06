@@ -1,18 +1,18 @@
 import React, {useCallback, useEffect, useState} from "react";
-import NewsCard from "../components/news-card/news-card";
+import NewsCard from "./components/news-card/news-card";
 import {useDispatch, useSelector} from "react-redux";
-import {createIncreasePagination, fetchMoreNewsByIds, fetchNewsIds} from "../../store/actionsCreators";
+import {createIncreasePagination, fetchMoreNewsByIds, fetchNewsIds} from "../../../store/actionsCreators";
 import {
     selectNews,
     selectCurrentNumberOfNews,
     selectNewsIds,
     selectLoadingMoreState,
     selectLoadingNewsState
-} from "../../store/selectors";
+} from "../../../store/selectors";
 import styles from "./news-pages.module.css"
 import {Button, Row} from "antd";
 import {LoadingOutlined, ReloadOutlined} from '@ant-design/icons';
-import Loader from "../components/loader/loader";
+import Loader from "../../components/loader/loader";
 
 const NewsPage = () => {
     const [reloadInterval, setReloadInterval] = useState(false);
