@@ -6,6 +6,7 @@ const initialState = {
     pagination: 0,
     count: 15,
     isLoadingMore: false,
+    isLoadingNews: false,
 }
 
 

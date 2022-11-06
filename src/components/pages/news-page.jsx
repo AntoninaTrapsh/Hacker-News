@@ -1,12 +1,14 @@
-import React, {useCallback, useEffect} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import NewsCard from "../components/news-card/news-card";
 import {useDispatch, useSelector} from "react-redux";
 import {createIncreasePagination, fetchMoreNewsByIds, fetchNewsIds} from "../../store/actionsCreators";
 import {selectNews, selectCurrentNumberOfNews, selectNewsIds, selectLoadingMoreState} from "../../store/selectors";
 import styles from "./news-pages.module.css"
 import {Button, Row} from "antd";
+import {ReloadOutlined} from '@ant-design/icons';
 
 const NewsPage = () => {
+    const [reloadInterval, setReloadInterval] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,12 +22,18 @@ const NewsPage = () => {
         return (() => {
             clearInterval(timer);
         })
-    }, [dispatch])
+    }, [dispatch, reloadInterval])
 
    const handleShowMoreClick = useCallback(() => {
        dispatch(createIncreasePagination())
        dispatch(fetchMoreNewsByIds());
    }, [dispatch])
+
+    const handleReloadClick = useCallback(() => {
+        dispatch(fetchNewsIds());
+
+        setReloadInterval(!reloadInterval);
+    }, [dispatch, reloadInterval])
 
     const news = useSelector(selectNews);
     const currentNumberOfNews = useSelector(selectCurrentNumberOfNews);
@@ -49,6 +57,7 @@ const NewsPage = () => {
                 !isLastNewsAtList &&
                 <Button type="default" loading={isLoadingMore} style={{marginLeft: "auto", marginRight: "auto"}} onClick={() => {handleShowMoreClick()}}>More</Button>
             }
+            <button className={styles['news-page__reload-button']} onClick={handleReloadClick}><ReloadOutlined /></button>
         </>
     );
 }
