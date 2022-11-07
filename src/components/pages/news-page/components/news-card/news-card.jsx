@@ -1,7 +1,7 @@
-import {Card, Col, Tag} from "antd";
+import {Card, Col} from "antd";
 import React from "react";
 import styles from "./news-card.module.css"
-import {LikeOutlined, UserOutlined} from '@ant-design/icons';
+import {UserOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import Score from "../score/score";
 

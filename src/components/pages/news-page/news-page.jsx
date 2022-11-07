@@ -11,7 +11,6 @@ import {
 } from "../../../store/selectors";
 import styles from "./news-pages.module.css"
 import {Button, Row} from "antd";
-import {LoadingOutlined, ReloadOutlined} from '@ant-design/icons';
 import Loader from "../../components/loader/loader";
 import ReloadButton from "../../components/reload-button/reload-button";
 

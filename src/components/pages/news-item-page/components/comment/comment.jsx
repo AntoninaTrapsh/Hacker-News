@@ -3,6 +3,7 @@ import React from "react";
 import { fetchChildrenComments} from "../../../../../store/actionsCreators";
 import {useDispatch} from "react-redux";
 import {DeleteOutlined, StopOutlined} from "@ant-design/icons";
+import xssValidateString from "../../../../../utils/xss-validation";
 
 const Comment = ({comment}) => {
     const dispatch = useDispatch();
@@ -19,11 +20,11 @@ const Comment = ({comment}) => {
             author={<a>{comment.by ? comment.by : "unknown"}</a>}
             avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt={comment.by}/>}
             content={
-                <p>
-                    {comment.text ? comment.text : null}
+                <div>
+                    {comment.text ? <p dangerouslySetInnerHTML={{__html: xssValidateString(comment.text)}}/> : null}
                     {comment.deleted ? <Tag color="error">This comment was deleted. <DeleteOutlined /></Tag> : null}
                     {comment.dead ? <Tag color="error">This comment was killed by software, user flags, or moderators. <StopOutlined /></Tag> : null}
-                </p>
+                </div>
             }
             datetime={
                 <Tooltip title="2016-11-22 11:22:33">
