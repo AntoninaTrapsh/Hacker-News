@@ -4,6 +4,7 @@ import { fetchChildrenComments} from "../../../../../store/actionsCreators";
 import {useDispatch} from "react-redux";
 import {DeleteOutlined, StopOutlined} from "@ant-design/icons";
 import xssValidateString from "../../../../../utils/xss-validation";
+import timeConverter from "../../../../../utils/time-converter";
 
 const Comment = ({comment}) => {
     const dispatch = useDispatch();
@@ -12,7 +13,6 @@ const Comment = ({comment}) => {
         dispatch(fetchChildrenComments(comment.id));
     }
 
-    console.log("COMMENT", comment);
     return (
         <AntComment
             key={comment.id}
@@ -26,11 +26,7 @@ const Comment = ({comment}) => {
                     {comment.dead ? <Tag color="error">This comment was killed by software, user flags, or moderators. <StopOutlined /></Tag> : null}
                 </div>
             }
-            datetime={
-                <Tooltip title="2016-11-22 11:22:33">
-                    <span>8 hours ago</span>
-                </Tooltip>
-            }
+            datetime={<span>{timeConverter(comment.time)}</span>}
         >
             {comment.childComments ? comment.childComments.map(child => <Comment key={child.id} comment={child}/>) : null }
         </AntComment>

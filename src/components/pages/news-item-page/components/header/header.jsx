@@ -1,6 +1,7 @@
 import React from "react";
 import {Button, Descriptions, PageHeader, Tag} from "antd";
 import {useHistory} from "react-router";
+import timeConverter from "../../../../../utils/time-converter";
 
 const Header = ({news}) => {
     const history = useHistory()
@@ -10,7 +11,7 @@ const Header = ({news}) => {
             className="news-item__header"
             onBack={() => history.go(-1)}
             title={news.info.title || "Deleted news"}
-            subTitle={news.info.time || null}
+            subTitle={timeConverter(news.info.time) || null}
             extra={news.info.url && [
                 <Button key="1" type="primary">
                     <a href={news.info.url}>Follow the link</a>

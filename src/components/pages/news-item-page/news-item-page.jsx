@@ -25,8 +25,6 @@ const NewsItemPage = () => {
         dispatch(fetchActiveNewsComments(id))
     }
 
-    console.log(news);
-
     return (
         <section>
             <Header news={news}/>
