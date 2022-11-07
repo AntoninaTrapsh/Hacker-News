@@ -14,9 +14,8 @@ const Header = ({news}) => {
                 </Button>,
             ]}
         >
-            <Descriptions size="small" column={3}>
+            <Descriptions size="small">
                 <Descriptions.Item label="Author">{news.info.by}</Descriptions.Item>
-                <Descriptions.Item label="Total number of comments">{news.info.descendants}</Descriptions.Item>
             </Descriptions>
         </PageHeader>
     )

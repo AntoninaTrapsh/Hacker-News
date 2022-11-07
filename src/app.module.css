@@ -4,3 +4,8 @@ main {
     margin: 0 auto;
     max-width: 1240px;
 }
+
+p {
+    margin: 0;
+    padding: 0;
+}

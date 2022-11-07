@@ -60,7 +60,7 @@ const NewsPage = () => {
                 <Row gutter={16}>
                     {
                         news.map((item) => {
-                            return <NewsCard key={item.id} info={item}/>
+                            return item && <NewsCard key={item.id} info={item}/>
                         })
                     }
                 </Row>

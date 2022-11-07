@@ -31,7 +31,7 @@ const NewsCard = (props) => {
                     <div className={styles['news-card__additional-info']}>
                         <div className={styles['news-card__author']}>
                             <UserOutlined/>
-                            {props.info.dead && `by ${props.info.by}`}
+                            {props.info.deleted && `by ${props.info.by}`}
                         </div>
                         <p>{timeConverter(props.info.time)}</p>
                     </div>

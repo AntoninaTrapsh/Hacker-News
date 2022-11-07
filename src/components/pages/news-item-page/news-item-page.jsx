@@ -8,6 +8,7 @@ import styles from "./news-item-page.module.css"
 import Header from "./components/header/header"
 import ReloadButton from "../../components/reload-button/reload-button";
 import Loader from "../../components/loader/loader";
+import {Empty} from "antd";
 
 const NewsItemPage = () => {
     let {id} = useParams();
@@ -30,19 +31,19 @@ const NewsItemPage = () => {
         <section>
             <Header news={news}/>
             <div className={styles['news-item__comments']}>
-                <h3>
-                    Comments
-                </h3>
-                {
+                <div className={styles['news-item__comments-header']}>
+                    <h3>Comments</h3>
+                    <p>{`Total: ${news.info.descendants}`}</p>
+                </div>
+                {   news.info.descendants ?
                     news.comments.map((comment) => {
                         return <Comment key={comment.id} comment={comment}/>
-                    })
+                    }) :
+                    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={"No comments yet"}/>
                 }
             </div>
             <ReloadButton handleReloadClick={handleReloadClick} isLoading={isLoading}/>
-            {
-                isLoading && <Loader/>
-            }
+            { isLoading && <Loader/> }
         </section>);
 }
 
