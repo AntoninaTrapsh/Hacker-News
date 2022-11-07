@@ -1,4 +1,5 @@
 import {
+    CHANGE_ACTIVE_NEWS_LOADING_STATE,
     CHANGE_LOADING_STATE,
     INCREASE_PAGINATION,
     LOAD_ACTIVE_NEWS_COMMENTS,
@@ -82,6 +83,11 @@ export const reducer = (state = initialState, {type, payload}) => {
                 ...state,
                 isLoadingNews: payload
             }
+        case CHANGE_ACTIVE_NEWS_LOADING_STATE:
+            return {
+                ...state,
+                isLoadingActiveNews: payload
+            }
         case LOAD_ACTIVE_NEWS_ITEM:
             return {
                 ...state,
@@ -93,9 +99,10 @@ export const reducer = (state = initialState, {type, payload}) => {
         case LOAD_ACTIVE_NEWS_COMMENTS:
             return {
                 ...state,
+                isLoadingActiveNews: false,
                 activeNewsItem: {
                     ...state.activeNewsItem,
-                    comments: [...state.activeNewsItem.comments, ...payload]
+                    comments: [...payload]
                 }
             }
         case LOAD_CHILDREN_COMMENTS:

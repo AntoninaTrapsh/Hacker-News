@@ -18,11 +18,11 @@ const NewsItemPage = () => {
     }, [dispatch, id])
 
     const news = useSelector(selectActiveNewsItem);
-    // const isLoading = useSelector(selectIsLoadingActiveNewsState);
-    //
-    // const handleReloadClick = () => {
-    //     dispatch(fetchActiveNewsComments(id))
-    // }
+    const isLoading = useSelector(selectIsLoadingActiveNewsState);
+
+    const handleReloadClick = () => {
+        dispatch(fetchActiveNewsComments(id))
+    }
 
     console.log(news);
 
@@ -39,10 +39,10 @@ const NewsItemPage = () => {
                     })
                 }
             </div>
-            {/*<ReloadButton handleReloadClick={handleReloadClick} isLoading={isLoading}/>*/}
-            {/*{*/}
-            {/*    isLoading && <Loader/>*/}
-            {/*}*/}
+            <ReloadButton handleReloadClick={handleReloadClick} isLoading={isLoading}/>
+            {
+                isLoading && <Loader/>
+            }
         </section>);
 }
 

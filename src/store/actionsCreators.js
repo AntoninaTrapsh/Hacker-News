@@ -1,4 +1,5 @@
 import {
+    CHANGE_ACTIVE_NEWS_LOADING_STATE,
     CHANGE_LOADING_STATE,
     INCREASE_PAGINATION, LOAD_ACTIVE_NEWS_COMMENTS, LOAD_ACTIVE_NEWS_ITEM, LOAD_CHILDREN_COMMENTS,
     LOAD_MORE_NEWS_BY_ID,
@@ -17,6 +18,15 @@ export function changeLoadingState(flag) {
     return async (dispatch, getState) => {
         dispatch({
             type: CHANGE_LOADING_STATE,
+            payload: flag
+        })
+    }
+}
+
+export function changeActiveNewsLoadingState(flag) {
+    return async (dispatch, getState) => {
+        dispatch({
+            type: CHANGE_ACTIVE_NEWS_LOADING_STATE,
             payload: flag
         })
     }
@@ -74,6 +84,8 @@ export function fetchNewsByIds() {
 
 export function fetchActiveNewsItemById(id) {
     return async (dispatch, getState) => {
+        dispatch(changeActiveNewsLoadingState(true))
+
         NewsClient.getNewsItem(id).then((data) => {
             dispatch({
                 type: LOAD_ACTIVE_NEWS_ITEM,
@@ -86,6 +98,8 @@ export function fetchActiveNewsItemById(id) {
 
 export function fetchActiveNewsComments() {
     return async (dispatch, getState) => {
+        dispatch(changeActiveNewsLoadingState(true))
+
         const state = getState()
         const ids = state.activeNewsItem.info.kids ? state.activeNewsItem.info.kids : []
 
