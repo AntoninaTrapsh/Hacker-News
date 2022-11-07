@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./news-card.module.css"
 import {LikeOutlined, UserOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
+import Score from "../score/score";
 
 const NewsCard = (props) => {
     function timeConverter(UNIX_timestamp) {
@@ -22,8 +23,7 @@ const NewsCard = (props) => {
             <Link to={`/item/${props.info.id}`}>
                 <Card
                     title={props.info.title}
-                    extra={<Tag style={{display: 'flex', alignItems: 'center', marginLeft: 10}}
-                                color="#f50">{props.info.score}<LikeOutlined/></Tag>}
+                    extra={<Score score={props.info.score}/>}
                     style={{
                         marginTop: 10,
                     }}
@@ -31,7 +31,7 @@ const NewsCard = (props) => {
                     <div className={styles['news-card__additional-info']}>
                         <div className={styles['news-card__author']}>
                             <UserOutlined/>
-                            {props.info.deleted && `by ${props.info.by}`}
+                            {`by ${props.info.by}`}
                         </div>
                         <p>{timeConverter(props.info.time)}</p>
                     </div>

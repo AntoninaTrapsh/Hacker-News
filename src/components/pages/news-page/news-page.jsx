@@ -51,29 +51,29 @@ const NewsPage = () => {
     const isLoadingMore = useSelector(selectLoadingMoreState);
 
     return (
-        <>
+        <section className={styles['news-page']}>
             <h1>News List</h1>
-            {
-                isLoading && <Loader/>
-            }
-            <div className={styles['news-page__list']}>
-                <Row gutter={16}>
-                    {
-                        news.map((item) => {
-                            return item && <NewsCard key={item.id} info={item}/>
-                        })
-                    }
-                </Row>
+            <div className={styles['news-page__wrapper']}>
+                <div className={styles['news-page__list']}>
+                    <Row gutter={16}>
+                        {
+                            news.map((item) => {
+                                return item && <NewsCard key={item.id} info={item}/>
+                            })
+                        }
+                    </Row>
+                </div>
+                {
+                    !isLastNewsAtList && !isLoading ?
+                        <Button type="default" loading={isLoadingMore} style={{marginLeft: "auto", marginRight: "auto"}}
+                                disabled={isLoadingMore && isLoading} onClick={() => {
+                            handleShowMoreClick()
+                        }}>More</Button> : null
+                }
             </div>
-            {
-                !isLastNewsAtList && !isLoading ?
-                    <Button type="default" loading={isLoadingMore} style={{marginLeft: "auto", marginRight: "auto"}}
-                            disabled={isLoadingMore && isLoading} onClick={() => {
-                        handleShowMoreClick()
-                    }}>More</Button> : null
-            }
             <ReloadButton handleReloadClick={handleReloadClick} isLoading={isLoading}/>
-        </>
+            {isLoading && <Loader/>}
+        </section>
     );
 }
 
