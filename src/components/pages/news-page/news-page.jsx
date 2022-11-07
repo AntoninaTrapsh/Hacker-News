@@ -13,6 +13,7 @@ import styles from "./news-pages.module.css"
 import {Button, Row} from "antd";
 import {LoadingOutlined, ReloadOutlined} from '@ant-design/icons';
 import Loader from "../../components/loader/loader";
+import ReloadButton from "../../components/reload-button/reload-button";
 
 const NewsPage = () => {
     const [reloadInterval, setReloadInterval] = useState(false);
@@ -71,11 +72,7 @@ const NewsPage = () => {
                         handleShowMoreClick()
                     }}>More</Button> : null
             }
-            <button className={styles['news-page__reload-button']} disabled={isLoading} onClick={handleReloadClick}>
-                {
-                    isLoading ? <LoadingOutlined/> : <ReloadOutlined/>
-                }
-            </button>
+            <ReloadButton handleReloadClick={handleReloadClick} isLoading={isLoading}/>
         </>
     );
 }

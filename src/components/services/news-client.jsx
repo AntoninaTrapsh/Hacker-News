@@ -6,12 +6,7 @@ class NewsClient {
         return await this.checkResponse(response);
     }
 
-    async getStoryItem(id) {
-        const response = await fetch(`${this.api}item/${id}.json`);
-        return await this.checkResponse(response);
-    }
-
-    async getNewsComments(id) {
+    async getNewsItem(id) {
         const response = await fetch(`${this.api}item/${id}.json`);
         return await this.checkResponse(response);
     }

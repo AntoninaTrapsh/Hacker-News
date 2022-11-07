@@ -2,3 +2,9 @@
     margin-right: 20px;
     margin-left: 25px;
 }
+
+.news-item__comments h3 {
+    border-bottom: 1px solid rgba(163, 158, 158, 0.5);
+    border-top: 1px solid rgba(163, 158, 158, 0.5);
+    padding: 10px 0;
+}

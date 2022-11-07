@@ -16,6 +16,7 @@ const initialState = {
     count: 15,
     isLoadingMore: false,
     isLoadingNews: false,
+    isLoadingActiveNews: false,
     activeNewsItem: {
         info: {},
         comments: []

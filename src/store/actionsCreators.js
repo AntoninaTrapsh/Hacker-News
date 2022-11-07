@@ -42,7 +42,7 @@ export function fetchMoreNewsByIds() {
         const fromId = state.pagination * state.count
         const ids = state.newsId.slice(fromId, fromId + state.count)
 
-        const requests = ids.map((id) => NewsClient.getStoryItem(id))
+        const requests = ids.map((id) => NewsClient.getNewsItem(id))
 
         Promise.all(requests)
             .then((res) => {
@@ -60,7 +60,7 @@ export function fetchNewsByIds() {
         const finishId = state.pagination * state.count
         const ids = state.newsId.slice(0, finishId + state.count)
 
-        const requests = ids.map((id) => NewsClient.getStoryItem(id))
+        const requests = ids.map((id) => NewsClient.getNewsItem(id))
 
         Promise.all(requests)
             .then((res) => {
@@ -74,7 +74,7 @@ export function fetchNewsByIds() {
 
 export function fetchActiveNewsItemById(id) {
     return async (dispatch, getState) => {
-        NewsClient.getStoryItem(id).then((data) => {
+        NewsClient.getNewsItem(id).then((data) => {
             dispatch({
                 type: LOAD_ACTIVE_NEWS_ITEM,
                 payload: data,
@@ -89,7 +89,7 @@ export function fetchActiveNewsComments() {
         const state = getState()
         const ids = state.activeNewsItem.info.kids ? state.activeNewsItem.info.kids : []
 
-        const requests = ids.map((id) => NewsClient.getStoryItem(id))
+        const requests = ids.map((id) => NewsClient.getNewsItem(id))
 
         Promise.all(requests)
             .then((res) => {
@@ -103,9 +103,9 @@ export function fetchActiveNewsComments() {
 
 export function fetchChildrenComments(id) {
     return async (dispatch, getState) => {
-        const responseComment = await NewsClient.getStoryItem(id)
+        const responseComment = await NewsClient.getNewsItem(id)
 
-        const requests = responseComment.kids.map((id) => NewsClient.getStoryItem(id))
+        const requests = responseComment.kids.map((id) => NewsClient.getNewsItem(id))
 
         Promise.all(requests)
             .then((res) => {

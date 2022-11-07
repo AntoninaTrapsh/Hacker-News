@@ -4,3 +4,4 @@ export const selectCurrentNumberOfNews = (store) => (store.pagination + 1) * sto
 export const selectLoadingMoreState = (store) => store.isLoadingMore;
 export const selectLoadingNewsState = (store) => store.isLoadingNews;
 export const selectActiveNewsItem = (store) => store.activeNewsItem;
+export const selectIsLoadingActiveNewsState = (store) => store.isLoadingActiveNews;
