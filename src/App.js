@@ -6,10 +6,12 @@ import styles from "./app.module.css";
 import {Switch, Route} from "react-router-dom";
 import NewsItemPage from "./components/pages/news-item-page/news-item-page";
 import PageNotFound from "./components/pages/page-not-found/page-not-found";
+import Header from "./components/components/header/header";
 
 const App = () => {
     return (
         <Provider store={store}>
+            <Header/>
             <main>
                 <Switch>
                     <Route exact path="/">

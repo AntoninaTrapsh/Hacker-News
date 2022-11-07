@@ -1,0 +1,11 @@
+ul, li {
+    list-style: none;
+}
+
+nav {
+    background-color: #f50;
+}
+
+img {
+    height: 40px;
+}
