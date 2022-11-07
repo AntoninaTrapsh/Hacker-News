@@ -11,7 +11,7 @@ import Loader from "../../components/loader/loader";
 import {Empty} from "antd";
 
 const NewsItemPage = () => {
-    let {id} = useParams();
+    const {id} = useParams();
     const dispatch = useDispatch();
 
     useEffect(() => {

@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Descriptions, PageHeader, Tag} from "antd";
 import {useHistory} from "react-router";
 import timeConverter from "../../../../../utils/time-converter";
+import xssValidateString from "../../../../../utils/xss-validation";
 
 const Header = ({news}) => {
     const history = useHistory()
@@ -9,7 +10,7 @@ const Header = ({news}) => {
     return (
         <PageHeader
             className="news-item__header"
-            onBack={() => history.go(-1)}
+            onBack={() => history.push('/')}
             title={news.info.title || "Deleted news"}
             subTitle={timeConverter(news.info.time) || null}
             extra={news.info.url && [
@@ -27,7 +28,7 @@ const Header = ({news}) => {
                     : null
                 }
             </Descriptions>
-            {news.info.text ? <p>{news.info.text}</p> : null}
+            {news.info.text ? <p dangerouslySetInnerHTML={{__html: xssValidateString(news.info.text)}}/> : null}
         </PageHeader>
     )
 }
