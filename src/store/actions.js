@@ -6,4 +6,5 @@ export const CHANGE_LOADING_STATE = "change_loading_state";
 export const LOAD_ACTIVE_NEWS_ITEM = "load_active_news_item";
 export const LOAD_ACTIVE_NEWS_COMMENTS = "load_active_news_comments";
 export const LOAD_CHILDREN_COMMENTS = "load_children_comments";
-export const CHANGE_ACTIVE_NEWS_LOADING_STATE = "change_active_news_loading_state"
+export const CHANGE_ACTIVE_NEWS_LOADING_STATE = "change_active_news_loading_state";
+export const CLEAR_NEWS = "clear_news";

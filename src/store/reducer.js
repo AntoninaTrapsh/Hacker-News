@@ -1,6 +1,6 @@
 import {
     CHANGE_ACTIVE_NEWS_LOADING_STATE,
-    CHANGE_LOADING_STATE,
+    CHANGE_LOADING_STATE, CLEAR_NEWS,
     INCREASE_PAGINATION,
     LOAD_ACTIVE_NEWS_COMMENTS,
     LOAD_ACTIVE_NEWS_ITEM,
@@ -82,6 +82,14 @@ export const reducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 isLoadingNews: payload
+            }
+        case CLEAR_NEWS:
+            console.log(2)
+            return {
+                ...state,
+                newsIds: [],
+                news: [],
+                pagination: 0,
             }
         case CHANGE_ACTIVE_NEWS_LOADING_STATE:
             return {

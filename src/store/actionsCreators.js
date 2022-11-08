@@ -1,6 +1,6 @@
 import {
     CHANGE_ACTIVE_NEWS_LOADING_STATE,
-    CHANGE_LOADING_STATE,
+    CHANGE_LOADING_STATE, CLEAR_NEWS,
     INCREASE_PAGINATION, LOAD_ACTIVE_NEWS_COMMENTS, LOAD_ACTIVE_NEWS_ITEM, LOAD_CHILDREN_COMMENTS,
     LOAD_MORE_NEWS_BY_ID,
     LOAD_NEWS_BY_ID,
@@ -85,6 +85,7 @@ export function fetchNewsByIds() {
 export function fetchActiveNewsItemById(id) {
     return async (dispatch, getState) => {
         dispatch(changeActiveNewsLoadingState(true))
+        dispatch(clearNews())
 
         NewsClient.getNewsItem(id).then((data) => {
             dispatch({
@@ -131,5 +132,12 @@ export function fetchChildrenComments(id) {
                     },
                 })
             })
+    }
+}
+
+export function clearNews() {
+    console.log(1);
+    return {
+        type: CLEAR_NEWS
     }
 }
