@@ -4,13 +4,11 @@ import styles from "./header.module.css"
 
 const Header = () => {
     return (
-        <nav>
-            <ul>
-                <li>
-                    <img src={logo} alt="logo"/>
-                </li>
-            </ul>
-        </nav>
+        <header>
+            <div className={styles['header__wrapper']}>
+                <img src={logo} alt="logo"/>
+            </div>
+        </header>
     )
 }
 

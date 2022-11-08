@@ -1,11 +1,14 @@
-ul, li {
-    list-style: none;
+header {
+    background-color: #f50;
+    width: 100%;
 }
 
-nav {
-    background-color: #f50;
+.header__wrapper {
+    max-width: 1240px;
+    margin: 0 auto;
 }
 
 img {
+    margin-left: 20px;
     height: 40px;
 }
