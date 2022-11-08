@@ -1,0 +1,36 @@
+.news-page {
+    margin: 20px;
+}
+
+.news-page__wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.news-page__list {
+    margin-bottom: 25px;
+}
+
+.news-page__reload-button {
+    width:50px;
+    border:2px solid #ccc;
+    background:#f7f7f7;
+    opacity: 0.75;
+    text-align:center;
+    padding:10px;
+    position:fixed;
+    bottom:50px;
+    right:50px;
+    cursor:pointer;
+    border-radius: 5px;
+}
+
+.news-page__reload-button:disabled {
+    cursor: default;
+}
+
+
+.news-page__reload-button:hover {
+    opacity: 1;
+}
+

@@ -1,0 +1,11 @@
+.news-card__additional-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.news-card__author {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

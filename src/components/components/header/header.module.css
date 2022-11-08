@@ -1,0 +1,14 @@
+header {
+    background-color: #f50;
+    width: 100%;
+}
+
+.header__wrapper {
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.header__wrapper img {
+    margin-left: 20px;
+    height: 40px;
+}
