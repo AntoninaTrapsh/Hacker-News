@@ -1,10 +1,10 @@
 import { Avatar, Comment as AntComment, Tag } from "antd";
 import React from "react";
-import { fetchChildrenComments } from "../../../../../store/actionsCreators";
+import { fetchChildrenComments } from "../../../../store/actionsCreators";
 import { useDispatch } from "react-redux";
 import { DeleteOutlined, StopOutlined } from "@ant-design/icons";
-import xssValidateString from "../../../../../utils/xss-validation";
-import timeConverter from "../../../../../utils/time-converter";
+import xssValidateString from "../../../../utils/xss-validation";
+import timeConverter from "../../../../utils/time-converter";
 
 const Comment = ({ comment }) => {
   const dispatch = useDispatch();

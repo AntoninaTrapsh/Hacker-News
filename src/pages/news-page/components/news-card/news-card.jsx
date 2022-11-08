@@ -4,7 +4,7 @@ import styles from "./news-card.module.css";
 import { UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import Score from "../score/score";
-import timeConverter from "../../../../../utils/time-converter";
+import timeConverter from "../../../../utils/time-converter";
 
 const NewsCard = (props) => {
   return (

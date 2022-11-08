@@ -1,7 +1,7 @@
 import React from "react";
 import NewsPage from "../../pages/news-page/news-page";
 import { Provider } from "react-redux";
-import { store } from "../../../store/store";
+import { store } from "../../store/store";
 import "./app.module.css";
 import { Switch, Route } from "react-router-dom";
 import NewsItemPage from "../../pages/news-item-page/news-item-page";

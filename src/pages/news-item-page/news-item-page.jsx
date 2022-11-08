@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchActiveNewsComments,
   fetchActiveNewsItemById,
-} from "../../../store/actionsCreators";
+} from "../../store/actionsCreators";
 import {
   selectActiveNewsItem,
   selectIsLoadingActiveNewsState,
-} from "../../../store/selectors";
+} from "../../store/selectors";
 import Comment from "./components/comment/comment";
 import styles from "./news-item-page.module.css";
 import Header from "./components/header/header";

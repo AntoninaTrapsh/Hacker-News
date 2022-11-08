@@ -10,7 +10,7 @@ import {
   LOAD_NEWS_BY_ID,
   LOAD_NEWS_ID,
 } from "./actions";
-import NewsClient from "../components/services/news-client";
+import NewsClient from "../services/news-client";
 
 export function createIncreasePagination() {
   return {

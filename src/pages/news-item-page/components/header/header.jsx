@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Descriptions, PageHeader, Tag } from "antd";
 import { useHistory } from "react-router";
-import timeConverter from "../../../../../utils/time-converter";
-import xssValidateString from "../../../../../utils/xss-validation";
+import timeConverter from "../../../../utils/time-converter";
+import xssValidateString from "../../../../utils/xss-validation";
 
 const Header = ({ news }) => {
   const history = useHistory();

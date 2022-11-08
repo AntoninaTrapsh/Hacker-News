@@ -5,14 +5,14 @@ import {
   createIncreasePagination,
   fetchMoreNewsByIds,
   fetchNewsIds,
-} from "../../../store/actionsCreators";
+} from "../../store/actionsCreators";
 import {
   selectNews,
   selectCurrentNumberOfNews,
   selectNewsIds,
   selectLoadingMoreState,
   selectLoadingNewsState,
-} from "../../../store/selectors";
+} from "../../store/selectors";
 import styles from "./news-pages.module.css";
 import { Button, Row } from "antd";
 import Loader from "../../components/loader/loader";
