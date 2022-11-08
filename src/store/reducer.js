@@ -32,23 +32,10 @@ const findCommentById = (comments, id) => {
     const comment = stack.pop();
 
     if (comment.id === id) {
-      return {
-        el: comment,
-      };
+      return comment;
     }
 
     if (comment.childComments) {
-      const elIndex = comment.childComments.findIndex(
-        (child) => child.id === id
-      );
-
-      if (elIndex !== -1) {
-        return {
-          el: comment.childComments[elIndex],
-          elIndex,
-        };
-      }
-
       stack.push(...comment.childComments);
     }
   }
@@ -115,21 +102,13 @@ export const reducer = (state = initialState, { type, payload }) => {
         },
       };
     case LOAD_CHILDREN_COMMENTS:
-      const { el, elIndex } = findCommentById(
+      const parentComment = findCommentById(
         state.activeNewsItem.comments,
         payload.parent
       );
 
-      if (!el.childComments) {
-        el.childComments = [...payload.children];
-      } else {
-        const comment = el.childComments[elIndex];
+      parentComment.childComments = [...payload.children];
 
-        el.childComments[elIndex] = {
-          ...comment,
-          childComments: payload.children,
-        };
-      }
       return {
         ...state,
         activeNewsItem: {

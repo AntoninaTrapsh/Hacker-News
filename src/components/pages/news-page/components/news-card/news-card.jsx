@@ -9,7 +9,7 @@ import timeConverter from "../../../../../utils/time-converter";
 const NewsCard = (props) => {
   return (
     <Col span={8}>
-      <Link to={`/item/${props.info.id}`}>
+      <Link to={`/news/${props.info.id}`}>
         <Card
           title={props.info.title}
           extra={props.info.score && <Score score={props.info.score} />}
