@@ -1,12 +1,12 @@
 import React from "react";
-import NewsPage from "./components/pages/news-page/news-page";
+import NewsPage from "../../pages/news-page/news-page";
 import {Provider} from "react-redux";
-import {store} from "./store/store";
+import {store} from "../../../store/store";
 import "./app.module.css";
 import {Switch, Route} from "react-router-dom";
-import NewsItemPage from "./components/pages/news-item-page/news-item-page";
-import PageNotFound from "./components/pages/page-not-found/page-not-found";
-import Header from "./components/components/header/header";
+import NewsItemPage from "../../pages/news-item-page/news-item-page";
+import PageNotFound from "../../pages/page-not-found/page-not-found";
+import Header from "../header/header";
 
 const App = () => {
     return (
