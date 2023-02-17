@@ -1,5 +1,7 @@
 # Hacker-News
 
+https://antoninatrapsh.github.io/Hacker-News/#/
+
 ### News site developed with React, Redux, React Router v5, and design system (Ant Design)
 
 ## How to run?
